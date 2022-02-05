@@ -12,6 +12,10 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4geodata_usaLow from "@amcharts/amcharts4-geodata/usaLow";
 import {Stats} from '../stats/stats';
 import {StatsService} from '../stats/stats.service';
+import {Color} from '@amcharts/amcharts4/core';
+
+import getCountryISO3 from 'country-iso-2-to-3';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-mapchart',
@@ -21,6 +25,7 @@ import {StatsService} from '../stats/stats.service';
 export class MapchartComponent {
 
   private chart: am4charts.XYChart;
+  public idPays: string
   /*private stats: Stats[] = [
     {
       id:"FR",
@@ -32,7 +37,7 @@ export class MapchartComponent {
     }
   ]*/
 
-  constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, private statsService: StatsService) {}
+  constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, private statsService: StatsService, private router: Router) {}
 
   // Run the function only in the browser
   browserOnly(f: () => void) {
@@ -51,6 +56,7 @@ export class MapchartComponent {
       this.statsService.getStatsListe().subscribe((stats) => {
         let qualite = []
         let idTab = []
+        let idPays = ""
         let couleurTab = {}
         for(let i=0; i<Object.keys(stats).length; i++){
 
@@ -63,7 +69,7 @@ export class MapchartComponent {
             "no2": stats[i][3],
             "so2": stats[i][4],
             "aqi": stats[i][5],
-            //"codeCouleur": am4core.color("#" + stats[i][6])
+            "color": am4core.color("#" + stats[i][6])
 
           })
 
@@ -102,9 +108,11 @@ export class MapchartComponent {
 
 // Configure series
           let polygonTemplate = polygonSeries.mapPolygons.template;
-          //polygonTemplate.id = "{id}";
+          polygonTemplate.id = "{id}";
           //polygonTemplate.tooltipText = "{name} avec une qualité de l'air de {qualiteAir}";
-          polygonTemplate.tooltipHTML =  `<center><strong>{name}</strong></center>
+          polygonTemplate.tooltipPosition = "fixed";
+
+          polygonTemplate.tooltipHTML =  `<div style="background-color: {codeCouleur}"><center><strong>{name}</strong></center>
       <hr />
       <table>
       <tr>
@@ -127,14 +135,29 @@ export class MapchartComponent {
         <th align="left">SO<sub>2</sub></th>
         <td>{so2} µg/m<sup>3</sup></td>
       </tr>
-      <tr>
+
         <td></td>
+        </table>
             </div>`;
 
 
-          polygonTemplate.fill = am4core.color("#009966");
-          polygonTemplate.stroke = am4core.color("#BDD2A6");
+
+          polygonTemplate.fill = am4core.color("#FFFFFF");
+
+
+          polygonTemplate.stroke = am4core.color("#000000");
           polygonTemplate.strokeWidth = 0.5;
+
+          // @ts-ignore
+          polygonTemplate.events.on("hit", event =>  {
+            //event.target.series.chart.zoomToMapObject(event.target);
+
+            // @ts-ignore
+            this.historiquePays(getCountryISO3(event.target.dataItem.dataContext.id))
+
+          }
+          );
+
 
           polygonSeries.data = JSON.parse(JSON.stringify(qualite));
           /*let graticuleSeries = chart.series.push(new am4maps.GraticuleSeries());
@@ -158,7 +181,7 @@ export class MapchartComponent {
 // Create hover state and set alternative fill color
           let hs = polygonTemplate.states.create("hover");
           console.log(hs);
-          hs.properties.fill = chart.colors.getIndex(0).brighten(-0.5);
+          //hs.properties.fill = chart.colors.getIndex(0).brighten(-0.5);
 
           console.log(polygonSeries);
 
@@ -197,6 +220,10 @@ export class MapchartComponent {
   }
 
 
+
+  public historiquePays(id: string){
+    this.router.navigate(['/historique/' + id])
+  }
 
   ngOnDestroy() {
     // Clean up chart when the component is removed

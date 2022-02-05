@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { MapchartComponent } from './mapchart/mapchart.component';
 import {StatsService} from './stats/stats.service';
 import {HttpClientModule} from '@angular/common/http';
+import { HistoriqueComponent } from './historique/historique.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapchartComponent
+    MapchartComponent,
+    HistoriqueComponent
   ],
   imports: [
     BrowserModule,

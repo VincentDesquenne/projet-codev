@@ -34,6 +34,15 @@ export class StatsService {
 
   }
 
+  getStatsHistorique(id: string): Observable<any> {
+
+    this.statsUrl = ENDPOINT + 'test/test2/' + id;
+    return this.httpStats.get<any>(this.statsUrl, {headers: this.mesHeaders});
+
+  }
+
+
+
 
 
 }
