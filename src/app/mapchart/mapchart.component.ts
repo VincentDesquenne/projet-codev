@@ -153,7 +153,7 @@ export class MapchartComponent {
             //event.target.series.chart.zoomToMapObject(event.target);
 
             // @ts-ignore
-            this.historiquePays(getCountryISO3(event.target.dataItem.dataContext.id))
+              this.historiquePays(getCountryISO3(event.target.dataItem.dataContext.id), event.target.dataItem.dataContext.name)
 
           }
           );
@@ -221,8 +221,8 @@ export class MapchartComponent {
 
 
 
-  public historiquePays(id: string){
-    this.router.navigate(['/historique/' + id])
+  public historiquePays(id: string, name: string){
+    this.router.navigate(['/historique/' + id + '/' + name])
   }
 
   ngOnDestroy() {

@@ -7,7 +7,7 @@ const routes: Routes = [
 
   { path: '', redirectTo : '/map', pathMatch: 'full'  },
   { path: 'map', component: MapchartComponent },
-  { path: 'historique/:pays', component: HistoriqueComponent },
+  { path: 'historique/:pays/:name', component: HistoriqueComponent },
 ];
 
 @NgModule({

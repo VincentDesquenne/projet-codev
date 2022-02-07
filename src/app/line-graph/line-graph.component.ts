@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {StatsService} from '../stats/stats.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as am4core from "@amcharts/amcharts4/core";
@@ -7,20 +7,16 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 
 @Component({
-  selector: 'app-historique',
-  templateUrl: './historique.component.html',
-  styleUrls: ['./historique.component.scss']
+  selector: 'app-line-graph',
+  templateUrl: './line-graph.component.html',
+  styleUrls: ['./line-graph.component.scss']
 })
-export class HistoriqueComponent implements OnInit {
+export class LineGraphComponent implements OnInit {
+  @Input('id') id: string;
 
-  id: string;
-  name: string;
-
-  constructor(private statsService: StatsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private statsService: StatsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get("pays");
-    this.name = this.route.snapshot.paramMap.get("name");
     this.statsService.getStatsHistorique(this.id).subscribe(
       (stats) => {
         let statistiques = []
@@ -70,10 +66,6 @@ export class HistoriqueComponent implements OnInit {
       }
     )
 
-  }
-
-  back(){
-    this.router.navigate(['/map']);
   }
 
 }
