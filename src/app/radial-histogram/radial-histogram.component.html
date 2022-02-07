@@ -1,10 +1,4 @@
-<mat-form-field appearance="fill">
-  <mat-select [(ngModel)]="year" (selectionChange)="changeYear()" placeholder="Année" name="year">
-    <mat-option *ngFor="let y of yearTab" [value]="y">
-      {{y}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+
 <!--<mat-form-field appearance="fill">
   <mat-label>Sélectionner une année</mat-label>
   <select [(ngModel)]="year" (change)="changeYear()">
@@ -13,3 +7,10 @@
 </mat-form-field>-->
 
 <div id="chartdivRadial"></div>
+<mat-form-field appearance="fill">
+  <mat-select [(ngModel)]="year" (selectionChange)="changeYear()" placeholder="Année" name="year">
+    <mat-option *ngFor="let y of yearTab" [value]="y">
+      {{y}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
