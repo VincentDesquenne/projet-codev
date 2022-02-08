@@ -73,7 +73,7 @@ export class HistoriqueComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/map']);
+    this.router.navigate(['/accueil']);
   }
 
 }
