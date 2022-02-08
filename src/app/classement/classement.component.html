@@ -13,7 +13,7 @@
 
   <!-- Weight Column -->
   <ng-container matColumnDef="aqi">
-    <th mat-header-cell *matHeaderCellDef> AQI </th>
+    <th mat-header-cell *matHeaderCellDef matTooltip="Indice de Qualité de l'Air (Air Quality Index). Une valeur faible indique une bonne qualité de l'air."> AQI </th>
     <td mat-cell *matCellDef="let element"> {{element.aqi}} </td>
   </ng-container>
 
