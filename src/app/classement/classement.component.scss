@@ -1,7 +1,16 @@
-.demo-table {
+.tab1 {
   width: 25%;
   position: absolute;
   top: 10px;
+  left: 0px;
+  height: 50%;
+
+}
+
+.tab2 {
+  width: 25%;
+  position: absolute;
+  bottom: 10px;
   left: 0px;
   height: 50%;
 
@@ -118,5 +127,10 @@ table tr:hover td {
 }
 
 .mat-column-aqi {
+  font-style: italic;
+}
+
+caption {
+  font-size: 20px;
   font-style: italic;
 }

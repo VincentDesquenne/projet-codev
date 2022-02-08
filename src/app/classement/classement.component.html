@@ -1,4 +1,6 @@
+<div class = "tab1">
 <table mat-table [dataSource]="classementBest" class="mat-elevation-z8 demo-table">
+  <caption>Liste des pays avec la meilleure qualité de l'air</caption>
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef> Position </th>
@@ -20,3 +22,29 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
+<div class="tab2">
+<table mat-table [dataSource]="classementBad" class="mat-elevation-z8 demo-table">
+  <caption>Liste des pays avec la moins bonne qualité de l'air</caption>
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Position </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="pays">
+    <th mat-header-cell *matHeaderCellDef> Pays </th>
+    <td mat-cell *matCellDef="let element"> {{element.pays}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="aqi">
+    <th mat-header-cell *matHeaderCellDef matTooltip="Indice de Qualité de l'Air (Air Quality Index). Une valeur faible indique une bonne qualité de l'air."> AQI </th>
+    <td mat-cell *matCellDef="let element"> {{element.aqi}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
