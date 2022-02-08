@@ -25,7 +25,8 @@ import {Router} from '@angular/router';
 export class MapchartComponent {
 
   private chart: am4charts.XYChart;
-  public idPays: string
+  public idPays: string;
+
   /*private stats: Stats[] = [
     {
       id:"FR",
@@ -222,7 +223,9 @@ export class MapchartComponent {
 
 
   public historiquePays(id: string, name: string){
-    this.router.navigate(['/historique/' + id + '/' + name])
+    this.zone.run(() => {
+      this.router.navigate(['/historique/' + id + '/' + name])
+    });
   }
 
   ngOnDestroy() {
