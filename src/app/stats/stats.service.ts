@@ -48,6 +48,11 @@ export class StatsService {
 
   }
 
+  getClassement(): Observable<any> {
+    this.statsUrl = ENDPOINT + 'test/getClassement';
+    return this.httpStats.get<any>(this.statsUrl, {headers: this.mesHeaders});
+  }
+
 
 
 

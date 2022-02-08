@@ -16,7 +16,7 @@ export class HistoriqueComponent implements OnInit {
   id: string;
   name: string;
 
-  constructor(private statsService: StatsService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private statsService: StatsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get("pays");

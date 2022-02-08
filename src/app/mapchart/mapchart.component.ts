@@ -69,7 +69,7 @@ export class MapchartComponent {
             "no2": stats[i][3],
             "so2": stats[i][4],
             "aqi": stats[i][5],
-            "color": am4core.color("#" + stats[i][6])
+            "fill": am4core.color("#" + stats[i][6])
 
           })
 

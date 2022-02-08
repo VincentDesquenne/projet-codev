@@ -13,6 +13,8 @@ import {FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ClassementComponent } from './classement/classement.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HistoriqueComponent,
     LineGraphComponent,
     RadialHistogramComponent,
+    ClassementComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     MatSelectModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [StatsService],
   bootstrap: [AppComponent]
