@@ -1,0 +1,18 @@
+@import "../radial-histogram/radial-histogram.component";
+
+.chart {
+  width: 100%;
+  height: 450px;
+}
+h1 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.left{
+  margin-top: 2%;
+  position: absolute;
+  left: 1%;
+  width: 47%;
+}
+

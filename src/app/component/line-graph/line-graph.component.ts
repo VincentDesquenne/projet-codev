@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StatsService} from '../stats/stats.service';
+import {StatsService} from '../../service/stats.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
@@ -14,10 +14,21 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 export class LineGraphComponent implements OnInit {
   @Input('id') id: string;
 
+  categorie : string = "Total incluant LUCF";
+  categorieTab: string[] = [
+    "Energie", "Processus industriels", "Changement d'affectation des terres et foresterie", "Soutes de Fiouls", "Electricite et Chaleur", "Fabrication et construction", "Transport", "Construction", "Autre combustible"];
+
+
   constructor(private statsService: StatsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.statsService.getStatsHistorique(this.id).subscribe(
+    this.changeCategorie()
+  }
+
+  changeCategorie() {
+    const e = document.getElementById('mySelect2') as HTMLSelectElement
+    this.categorie = e.options[e.selectedIndex].value
+    this.statsService.getStatsHistoriqueCategorie(this.id, this.categorie).subscribe(
       (stats) => {
         let statistiques = []
         for(let i=0; i<Object.keys(stats).length; i++){
@@ -28,7 +39,6 @@ export class LineGraphComponent implements OnInit {
             value: stats[i].value,
           })
         }
-        console.log(statistiques)
 
         // Themes begin
         am4core.useTheme(am4themes_animated);
@@ -65,6 +75,7 @@ export class LineGraphComponent implements OnInit {
         chart.scrollbarX = new am4core.Scrollbar();
       }
     )
+
 
   }
 

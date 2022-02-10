@@ -10,8 +10,8 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import am4geodata_continentsLow from "@amcharts/amcharts4-geodata/continentsLow";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4geodata_usaLow from "@amcharts/amcharts4-geodata/usaLow";
-import {Stats} from '../stats/stats';
-import {StatsService} from '../stats/stats.service';
+import {Stats} from '../../model/stats';
+import {StatsService} from '../../service/stats.service';
 import {Color} from '@amcharts/amcharts4/core';
 
 import getCountryISO3 from 'country-iso-2-to-3';
@@ -26,6 +26,7 @@ export class MapchartComponent {
 
   private chart: am4charts.XYChart;
   public idPays: string;
+  public loading: boolean = true
 
   /*private stats: Stats[] = [
     {
@@ -177,7 +178,7 @@ export class MapchartComponent {
           worldSeries.mapPolygons.template.nonScalingStroke = true;
 
           chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 0.1;
-          chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#9899a6");
+          chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#000431");
 
 // Create hover state and set alternative fill color
           let hs = polygonTemplate.states.create("hover");
@@ -196,6 +197,8 @@ export class MapchartComponent {
               animation.stop();
             }
           })
+
+        this.loading = false;
 
 
         }

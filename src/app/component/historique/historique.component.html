@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<h1>Évolution de la consommation énergétique en {{name}}</h1>
+<div style="display: flex">
+  <app-line-graph [id]="id"></app-line-graph>
+  <app-radial-histogram [id]="id"></app-radial-histogram>
+</div>
+
+
+<div class="btn-back">
+  <button class="bn3637 bn36"(click)="back()">Retour</button>
+</div>

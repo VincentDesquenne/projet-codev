@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import {StatsService} from '../stats/stats.service';
+import {StatsService} from '../../service/stats.service';
 
 
 interface Car {
@@ -21,10 +21,10 @@ export class RadialHistogramComponent implements OnInit {
   @Input('id') id: string
 
 
-  year: number = 1990
+  year: number = 1990;
 
   yearTab: number[] = [
-    1990, 1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]
+   1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]
 
 
   constructor(private statsService: StatsService) { }
@@ -34,9 +34,10 @@ export class RadialHistogramComponent implements OnInit {
   }
 
   changeYear(){
-    this.statsService.getStatsHistoriqueCategorie(this.id, this.year).subscribe(
+    const e = document.getElementById('mySelect') as HTMLSelectElement
+    this.year = parseInt(e.options[e.selectedIndex].value)
+    this.statsService.getStatsHistoriqueCategorieAnnee(this.id, this.year).subscribe(
       (stats) => {
-        console.log(stats)
         let statistiques = []
         for(let i=0; i<Object.keys(stats).length; i++){
           statistiques.push({
@@ -44,7 +45,6 @@ export class RadialHistogramComponent implements OnInit {
             value: stats[i][1].value,
           })
         }
-        console.log(statistiques)
         // Themes begin
         am4core.useTheme(am4themes_animated);
 // Themes end
@@ -79,6 +79,7 @@ export class RadialHistogramComponent implements OnInit {
         valueAxis.renderer.labels.template.disabled = true;
         valueAxis.tooltip.disabled = true;
 
+
 // Create series
         let series = chart.series.push(new am4charts.RadarColumnSeries());
         series.sequencedInterpolation = true;
@@ -95,6 +96,7 @@ export class RadialHistogramComponent implements OnInit {
         let hoverState = series.columns.template.radarColumn.states.create("hover");
         hoverState.properties.cornerRadius = 0;
         hoverState.properties.fillOpacity = 1;
+
 
 
         series.columns.template.adapter.add("fill", function(fill, target) {

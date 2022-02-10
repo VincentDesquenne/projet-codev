@@ -1,0 +1,17 @@
+<div class="left">
+
+  <h1>{{categorie}}</h1>
+
+  <div class="chart" id="chartdivHisto"></div>
+  <select id="mySelect2" (change)="changeCategorie()">
+    <option  value="Total incluant LUCF" selected>Total incluant LUCF</option>
+    <option *ngFor="let categ of categorieTab" [value]="categ">{{categ}}</option>
+  </select>
+  <!--<mat-form-field appearance="fill">
+    <mat-select [(ngModel)]="categorie" (selectionChange)="changeCategorie()" placeholder="Catégorie" name="categorie">
+      <mat-option *ngFor="let categ of categorieTab" [value]="categ">
+        {{categ}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>-->
+</div>

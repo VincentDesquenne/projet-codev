@@ -1,0 +1,44 @@
+<div id="container" [ngClass]="containerStyle">
+  <div class="form-container sign-up-container">
+    <form [formGroup]="loginForm" (ngSubmit)="inscription()">
+      <h1>Créer un compte</h1>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Nom" [formControl]="nomControl"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email" [formControl]="emailControl"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Mot de passe" [formControl]="mdpControl"/>
+      </mat-form-field>
+      <select id="mySelectPays"  [formControl]="paysControl">
+        <option value="" disabled selected>Pays</option>
+        <option *ngFor="let pays of paysList" [value]="pays">{{pays}}</option>
+      </select>
+      <button style="margin-top: 20px">Valider</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form [formGroup]="connexionForm" (ngSubmit)="valider()">
+      <h1>Se connecter</h1>
+      <input matInput type="text" placeholder="Nom" [formControl]="nomUtilControl"/>
+      <input matInput type="password" placeholder="Mot de passe" [formControl]="motPasseControl"/>
+      <button>Se connecter</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Bienvenue !</h1>
+        <p>Pour rester connecté, rentrez vos informations personnelles</p>
+        <button class="ghost" id="signIn" (click)="signIn()">Se connecter</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Bonjour</h1>
+        <p>Entrez vos données personnelles et découvrez la consommation énergétique du monde entier !</p>
+        <button class="ghost" id="signUp" (click)="signUp()">S'inscrire</button>
+      </div>
+    </div>
+  </div>
+</div>

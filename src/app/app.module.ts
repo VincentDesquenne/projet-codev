@@ -3,20 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MapchartComponent } from './mapchart/mapchart.component';
-import {StatsService} from './stats/stats.service';
+import { MapchartComponent } from './component/mapchart/mapchart.component';
+import {StatsService} from './service/stats.service';
 import {HttpClientModule} from '@angular/common/http';
-import { HistoriqueComponent } from './historique/historique.component';
-import { LineGraphComponent } from './line-graph/line-graph.component';
-import { RadialHistogramComponent } from './radial-histogram/radial-histogram.component';
-import {FormsModule} from '@angular/forms';
+import { HistoriqueComponent } from './component/historique/historique.component';
+import { LineGraphComponent } from './component/line-graph/line-graph.component';
+import { RadialHistogramComponent } from './component/radial-histogram/radial-histogram.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ClassementComponent } from './classement/classement.component';
+import { ClassementComponent } from './component/classement/classement.component';
 import {MatTableModule} from '@angular/material/table';
-import {AccueilComponent} from './accueil/accueil.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import {AccueilComponent} from './component/accueil/accueil.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { ConnexionComponent } from './component/connexion/connexion.component';
+import {ConnexionService} from './service/connexion.service';
+import {MatSelectCountryModule} from '@angular-material-extensions/select-country';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -27,7 +32,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     LineGraphComponent,
     RadialHistogramComponent,
     ClassementComponent,
-    AccueilComponent
+    AccueilComponent,
+    NavbarComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +45,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatTooltipModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatSelectCountryModule.forRoot('fr'),
+    MatInputModule
+
   ],
-  providers: [StatsService],
+  providers: [StatsService, ConnexionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

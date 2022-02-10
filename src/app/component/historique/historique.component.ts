@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {StatsService} from '../stats/stats.service';
+import {StatsService} from '../../service/stats.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
@@ -32,7 +32,6 @@ export class HistoriqueComponent implements OnInit {
             value: stats[i].value,
           })
         }
-        console.log(statistiques)
 
         // Themes begin
         am4core.useTheme(am4themes_animated);
