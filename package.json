@@ -36,7 +36,7 @@
     "svg-country-flags": "^1.2.10",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2",
-    "typescript": "^2.1.0"
+    "typescript": "^2.1.6"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.1",
